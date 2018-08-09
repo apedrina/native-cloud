@@ -1,0 +1,44 @@
+server:
+  port: 8083
+
+order:
+  queue:
+    name: order_queue
+    consumers:
+      min: 1
+      max: 3
+  exchange:
+    name: order_exchange
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: order
+  rabbitmq:
+    port: 5672
+    host: localhost
+    user: guest
+    password: guest
+    backoffpolicy:
+      interval:
+        initial: 1000
+        max: 60000
+  data:
+    mongodb:
+      host: localhost
+      database: order
+  boot:
+    admin:
+      url: http://localhost:1111
+      username: admin
+      password: admin123
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+
+ribbon:
+  eureka:
+    enabled: true

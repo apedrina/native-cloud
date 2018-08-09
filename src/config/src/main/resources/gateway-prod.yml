@@ -1,0 +1,30 @@
+ribbon:
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
+
+zuul:
+  prefix: /api
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+
+  routes:
+    order:
+        path: /v1/order/**
+        serviceId: order
+        stripPrefix: false
+        sensitiveHeaders:
+    integration:
+        path: /v1/integration/**
+        serviceId: integration
+        stripPrefix: false
+        sensitiveHeaders:
+    client:
+        path: /v1/client/**
+        serviceId: client
+        stripPrefix: false
+        sensitiveHeaders:
+
+server:
+  port: 8089

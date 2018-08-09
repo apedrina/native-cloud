@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: app
+
+server:
+  port: 8081
+
+#keycloak:
+#  auth-server-url: http://keycloak:8080/auth
+#  realm: admin
+#  resource: admin
+#  public-client: true
+
+#  security-constraints[0]:
+#    authRoles[0]: admin
+#    securityCollections[0]:
+#      patterns[0]: /home/*
+#  principal-attribute: preferred_username

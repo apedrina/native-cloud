@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: registry
+  cloud:
+    config:
+      uri: http://config:8888
+      username: user
+      password: test
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    server:
+      waitTimeInMsWhenSyncEmpty: 0
+
+ribbon:
+  eureka:
+    enabled: false
+server:
+ port: 8761

@@ -1,0 +1,48 @@
+server:
+  port: 8089
+
+#ribbon:
+#  ReadTimeout: 20000
+#  ConnectTimeout: 20000
+#  eureka:
+#    enabled: false
+
+management:
+  security:
+    enabled: false
+
+#ZUUL
+zuul:
+  prefix: /api
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+
+  routes:
+    order:
+        path: /v1/order/**
+        serviceId: order
+        stripPrefix: false
+        sensitiveHeaders:
+    integration:
+        path: /v1/integration/**
+        serviceId: integ
+        stripPrefix: false
+        sensitiveHeaders:
+    client:
+        path: /v1/client/**
+        serviceId: client
+        stripPrefix: false
+        sensitiveHeaders:
+
+    auth:
+        path: /uaa/**
+        url: http://localhost:5000
+        stripPrefix: false
+        sensitiveHeaders:
+    account:
+        path: /accounts/**
+        serviceId: account
+        stripPrefix: false
+        sensitiveHeaders:

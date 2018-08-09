@@ -1,0 +1,106 @@
+version: "3.2"
+
+services:
+    #elasticsearch:
+    #    image: elasticsearch:2.4.5
+    #    container_name: elasticsearch
+    #    ports:
+    #        - "9200:9200"
+    #        - "9300:9300"
+    auth-mongodb:
+        environment:
+          MONGODB_PASSWORD: 123
+        image: sqshq/piggymetrics-mongodb
+        restart: always
+        logging:
+          options:
+            max-size: "10m"
+            max-file: "10"
+    account-mongodb:
+        environment:
+          INIT_DUMP: account-service-dump.js
+          MONGODB_PASSWORD: 123
+        image: sqshq/piggymetrics-mongodb
+        restart: always
+        logging:
+          options:
+            max-size: "10m"
+            max-file: "10"
+
+    registry:
+        build: ../src/registry
+        ports:
+            - "8761:8761"
+        container_name: registry
+    config:
+        build: ../src/config
+        ports:
+            - "8888:8888"
+        depends_on:
+          - "mongodb"
+          - "rabbitmq"
+        container_name: config
+    rabbitmq:
+        image: rabbitmq:3.5.4-management
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+        container_name: rabbitmq
+    mongodb:
+        image: mongo:3
+        ports:
+            - "27017:27017"
+        container_name: mongodb
+    clientservice:
+        build: ../src/clientservice
+        ports:
+            - "8082:8082"
+        depends_on:
+          - "config"
+          - "registry"
+        container_name: clientservice
+    #keycloak:
+    #    build: ./keycloak
+    #    ports:
+    #      - "8080:8080"
+    #    environment:
+    #      - KEYCLOAK_USER=test
+    #      - KEYCLOAK_PASSWORD=test
+    #    container_name: keycloak
+    admin:
+        build: ../src/admin
+        ports:
+            - "1111:1111"
+        container_name: admin
+    app:
+        build: ../src/app-view
+        ports:
+            - "8081:8081"
+        container_name: app
+    gateway:
+        build: ../src/gateway
+        ports:
+            - "8089:8089"
+        container_name: gateway
+        depends_on:
+          - "config"
+          - "registry"
+    integration:
+        build: ../src/integration
+        ports:
+            - "8999:8999"
+        restart: always
+        depends_on:
+          - "config"
+          - "registry"
+          - "clientservice"
+          - "orderservice"
+        container_name: integration
+    orderservice:
+        build: ../src/orderservice
+        ports:
+            - "8083:8083"
+        depends_on:
+          - "config"
+          - "registry"
+        container_name: orderservice

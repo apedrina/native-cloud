@@ -1,0 +1,78 @@
+server:
+  port: 8999
+
+logging:
+  level:
+    root: ERROR
+
+spring:
+  application:
+    name: integration
+    cloud:
+      config:
+        failFast: true
+        uri: http://config:8888
+        username: user
+        password: test
+        retry:
+          initialInterval: 12000
+          maxInterval: 12000
+          maxAttempts: 30
+  h2:
+    console:
+      consoleTimeout: 180000
+      enabled: true
+  rabbitmq:
+    port: 5672
+    host: rabbitmq
+    user: guest
+    password: guest
+    backoffpolicy:
+      interval:
+        initial: 1000
+        max: 60000
+
+  datasource:
+    plataform: h2
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+          ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+
+client:
+  queue:
+    name: client_queue
+    consumers:
+      min: 1
+      max: 3
+  exchange:
+    name: client_exchange
+
+order:
+  queue:
+    name: order_queue
+    consumers:
+      min: 1
+      max: 3
+  exchange:
+    name: order_exchange
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://registry:8761/eureka}
+ribbon:
+  eureka:
+    enabled: true

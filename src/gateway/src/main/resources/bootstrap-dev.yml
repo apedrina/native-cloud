@@ -1,0 +1,16 @@
+#SPRING
+spring:
+  profiles:
+    active: dev
+  application:
+    name: gateway
+  cloud:
+    config:
+      failFast: true
+      uri: http://localhost:8888
+      username: user
+      password: test
+      retry:
+        initialInterval: 12000
+        maxInterval: 12000
+        maxAttempts: 30

@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: client
+  profiles:
+    active: dev
+
+  cloud:
+    config:
+      failFast: true
+      uri: http://config:8888
+      username: user
+      password: test
+      retry:
+        initialInterval: 12000
+        maxInterval: 12000
+        maxAttempts: 30
+ribbon:
+  eureka:
+    enabled: false
