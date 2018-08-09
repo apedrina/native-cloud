@@ -2,10 +2,6 @@
 
 Here you will find an example of a Native Cloud Application using: SpringCloud, SpringEureka, SpringZuul, SpringConfig, SpringBoot, MongoDB, Docker, etc.
 
-# Architecture
-
-![alt text](https://raw.githubusercontent.com/apedrina/native-cloud/master/doc/diagram.jpeg)
-
 # How to
 
 First run the /config module with the bellow command:
