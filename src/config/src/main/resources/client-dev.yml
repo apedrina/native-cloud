@@ -1,5 +1,7 @@
 server:
   port: 8082
+  servlet:
+    contextPath: /client
 
 eureka:
   client:
@@ -19,9 +21,19 @@ client:
     name: client_exchange
 
 spring:
+  cloud:
+    config:
+      failFast: true
+      uri: http://localhost:8888
+      username: user
+      password: test
+      retry:
+        initialInterval: 12000
+        maxInterval: 12000
+        maxAttempts: 30
   rabbitmq:
     port: 5672
-    host: rabbitmq
+    host: localhost
     user: guest
     password: guest
     backoffpolicy:
@@ -35,10 +47,15 @@ spring:
 
   boot:
     admin:
-      url: http://admin:1111
+      url: http://localhost:1111
       username: admin
       password: admin123
 
 management:
   security:
     enabled: false
+    
+security:
+  basic:
+    user: test
+    password: test
