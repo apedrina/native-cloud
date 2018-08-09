@@ -4,7 +4,7 @@ Here you will find an example of a Native Cloud Application using: SpringCloud, 
 
 # Architecture
 
-![alt text](https://raw.githubusercontent.com/apedrina/example-cloud-app/master/doc/diagram.jpeg)
+![alt text](https://raw.githubusercontent.com/apedrina/native-cloud/master/doc/diagram.jpeg)
 
 # How to
 
@@ -26,14 +26,14 @@ Now we can access the eureka admin panel to do this access:
 ```
 http://localhost:8761/
 ```
-![alt text](https://raw.githubusercontent.com/apedrina/example-cloud-app/master/doc/eureka.png)
+![alt text](https://raw.githubusercontent.com/apedrina/native-cloud/master/doc/eureka.png)
 
 Ok, /admin module is the next module to start:
 
 ```bash
 mvn spring-boot:run -Dspring.profiles.active=dev
 ```
-![alt text](https://raw.githubusercontent.com/apedrina/example-cloud-app/master/doc/spring-admin.png)
+![alt text](https://raw.githubusercontent.com/apedrina/native-cloud/master/doc/spring-admin.png)
 
 There isn't obligate order to start the others modules. To run all of these other modules use the same param used above: 
 ``
