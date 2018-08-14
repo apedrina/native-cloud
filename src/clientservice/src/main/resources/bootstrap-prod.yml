@@ -1,3 +1,5 @@
+server:
+  contextPath: /client
 spring:
   application:
     name: client

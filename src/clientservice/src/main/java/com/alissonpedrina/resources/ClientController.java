@@ -39,7 +39,7 @@ public class ClientController {
     log.info("Fetching User with id " + id);
     User user = userService.findById(id);
     if (user == null) {
-      System.out.println("User with id " + id + " not found");
+      log.debug("User with id " + id + " not found");
       return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
     }
     return new ResponseEntity<User>(user, HttpStatus.OK);
@@ -50,10 +50,10 @@ public class ClientController {
 
   @RequestMapping(value = "/user/", method = RequestMethod.POST)
   public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
-    log.info("Creating User " + user.getName());
+    log.debug("Creating User " + user.getName());
 
     if (userService.isUserExist(user)) {
-      System.out.println("A User with name " + user.getName() + " already exist");
+      log.info("A User with name " + user.getName() + " already exist");
       return new ResponseEntity<Void>(HttpStatus.CONFLICT);
     }
 
@@ -74,7 +74,7 @@ public class ClientController {
     User currentUser = userService.findById(id);
 
     if (currentUser == null) {
-      System.out.println("User with id " + id + " not found");
+      log.debug("User with id " + id + " not found");
       return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
     }
 
@@ -94,7 +94,7 @@ public class ClientController {
 
     User user = userService.findById(id);
     if (user == null) {
-      System.out.println("Unable to delete. User with id " + id + " not found");
+      log.debug("Unable to delete. User with id " + id + " not found");
       return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
     }
 
