@@ -1,20 +1,15 @@
 <?xml version="1.0"?>
 <project
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-	<!--  parent>
+	<parent>
 		<groupId>com.alissonpedrina</groupId>
 		<artifactId>example-cloud-app</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-	</parent-->
-	
-	<parent>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-parent</artifactId>
-      <version>1.5.9.RELEASE</version>
-    </parent>
-	
+	</parent>
+
 	<artifactId>auth</artifactId>
 	<name>auth</name>
 	<url>http://maven.apache.org</url>
@@ -27,19 +22,19 @@
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
-        		<groupId>org.springframework.security</groupId>
-        		<artifactId>spring-security-ldap</artifactId>
-    		</dependency>
-    		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-ldap</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.unboundid</groupId>
-            <artifactId>unboundid-ldapsdk</artifactId>
-        </dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-ldap</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-ldap</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.unboundid</groupId>
+			<artifactId>unboundid-ldapsdk</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -72,12 +67,12 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.security.oauth</groupId>
-			<artifactId>spring-security-oauth2</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-jwt</artifactId>
+			<groupId>org.springframework.security.oauth.boot</groupId>
+			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
 		</dependency>
 
 		<!-- STARTER -->
@@ -108,17 +103,6 @@
 		</dependency>
 
 	</dependencies>
-	<dependencyManagement>
-      <dependencies>
-        <dependency>
-          <groupId>org.springframework.cloud</groupId>
-          <artifactId>spring-cloud-dependencies</artifactId>
-          <version>Edgware.RELEASE</version>
-          <type>pom</type>
-          <scope>import</scope>
-        </dependency>
-     </dependencies>
-    </dependencyManagement>
 	<build>
 		<plugins>
 			<plugin>

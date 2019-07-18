@@ -1,23 +1,21 @@
 # -Drun.profiles=dev
 #-Dspring.profiles.active=prod
 spring:
-  application:
-    name: config
-  cloud:
   profiles:
     active: native
+  application:
+    name: config
+  security:
+   user:
+    password: test
+  cloud:
     config:
       server:
         native:
           searchLocations: classpath:/
-        #git:
-        #  uri: https://github.com/apedrina/config.git
-
 server:
   port: 8888
 
-security:
-  user:
-    password: test
+
 
 
