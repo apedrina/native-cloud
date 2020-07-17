@@ -1,0 +1,14 @@
+version: "3.2"
+
+services:
+  ocr:
+    image: akumo/ocr:latest
+    ports:
+      - "9898:9898"
+    container_name: ocr
+    networks:
+      - compose-network
+networks:
+  compose-network:
+    driver: bridge
+

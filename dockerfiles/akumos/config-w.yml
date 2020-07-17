@@ -1,0 +1,15 @@
+version: "3.2"
+
+services:
+  config:
+    build: ../../config
+    image: akumo/config:latest
+    ports:
+      - "8888:8888"
+    container_name: config
+    volumes:
+      - c:/tmp/akumos/config:/akumos
+  #networks:
+  #   compose-network:
+  #      driver: bridge
+

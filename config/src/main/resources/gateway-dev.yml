@@ -1,0 +1,27 @@
+server:
+  port: 8089
+
+ribbon:
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
+  eureka:
+    enabled: true
+
+management:
+  security:
+    enabled: false
+
+#ZUUL
+zuul:
+  prefix: /api
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+
+  routes:
+    ocr:
+      path: /ocr/**
+      serviceId: ocrservice
+      stripPrefix: false
+      sensitiveHeaders:

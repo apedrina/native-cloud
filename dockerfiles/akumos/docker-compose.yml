@@ -1,0 +1,69 @@
+version: "3.2"
+
+services:
+  registry:
+    image: akumo/registry:latest
+    ports:
+      - "8761:8761"
+    container_name: registry
+    depends_on:
+      - "config"
+    networks:
+      - compose-network
+  config:
+    image: akumo/config:latest
+    ports:
+      - "8888:8888"
+    container_name: config
+    networks:
+      - compose-network
+  gateway:
+    image: akumo/gateway:latest
+    ports:
+      - "8089:8089"
+    container_name: gateway
+    depends_on:
+      - "config"
+      - "registry"
+    networks:
+      - compose-network
+  ocr:
+    image: akumo/ocr:latest
+    ports:
+      - "9898:9898"
+    container_name: ocrservice
+    depends_on:
+      - "config"
+      - "registry"
+      - "gateway"
+    networks:
+      - compose-network
+    volumes:
+      - "/private/var/log/akumos:/var/log/akumos"
+
+
+      #postgres-compose:
+      # image: postgres
+      # environment:
+      #   POSTGRES_PASSWORD: "Postgres2019!"
+      # ports:
+      #   - "15432:5432"
+      # networks:
+      #   - compose-network
+      # container_name: postgres-container
+
+  #pgadmin-compose:
+  #  image: dpage/pgadmin4
+  #  environment:
+  #    PGADMIN_DEFAULT_EMAIL: "pedrina.alisson@gmail.com"
+  #    PGADMIN_DEFAULT_PASSWORD: "123"
+  #  ports:
+  #    - "16543:80"
+  #  depends_on:
+  #    - postgres-compose
+  #  networks:
+  #    - compose-network
+
+networks:
+  compose-network:
+    driver: bridge

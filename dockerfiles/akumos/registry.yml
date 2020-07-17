@@ -1,0 +1,13 @@
+version: "3.2"
+
+services:
+  registry:
+    image: akumo/registry:latest
+    ports:
+      - "8761:8761"
+    container_name: registry
+    networks:
+      - compose-network
+networks:
+  compose-network:
+    driver: bridge

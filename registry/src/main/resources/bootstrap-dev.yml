@@ -1,0 +1,14 @@
+#Generics
+server:
+  port: 8761
+#SPRING
+spring:
+  profiles:
+    active: dev
+  application:
+    name: registry
+#Eureka
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false

@@ -1,0 +1,36 @@
+#SPRING
+spring:
+  profiles:
+    active: dev
+  application:
+    name: gateway
+  cloud:
+    config:
+      failFast: true
+      uri: http://config:8888
+      username: admin
+      password: admin
+      retry:
+        initialInterval: 12000
+        maxInterval: 12000
+        maxAttempts: 30
+management:
+  security:
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+zuul:
+  prefix: /api
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+
+  routes:
+    ocr:
+      path: /ocr/**
+      serviceId: ocrservice
+      stripPrefix: false
+      sensitiveHeaders:

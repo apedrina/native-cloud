@@ -1,0 +1,44 @@
+jwt:
+  secret: javainuse
+logging:
+  level:
+    org:
+      springframework: ERROR
+security:
+  require-ssl: true
+server:
+  port: 8081
+  servlet:
+    context-path: /security
+  ssl:
+    key-alias: focare
+    key-store: classpath:keystore/focare.p12
+    key-store-password: 123456
+    key-store-type: PKCS12
+
+app:
+  ssl:
+    key-store: /Users/alissonpedrina/Documents/gitprojects/jvmti-vivo/java/oauth-authorization-server/src/main/resources/keystore/focare.p12
+    host: localhost
+    port: 9000
+
+jdbc:
+  driverClassName: org.postgresql.Driver
+  pass: Postgres2019!
+  url: jdbc:postgresql://localhost:15432/postgres
+  user: postgres
+spring:
+  datasource:
+    initialization-mode: always
+    password: Postgres2019!
+    platform: postgres
+    url: jdbc:postgresql://localhost:15432/postgres
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true

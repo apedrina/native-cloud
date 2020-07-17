@@ -1,0 +1,13 @@
+version: "3.2"
+
+services:
+  gateway:
+    image: akumo/gateway:latest
+    ports:
+      - "8089:8089"
+    container_name: gateway
+    networks:
+      - compose-network
+networks:
+  compose-network:
+    driver: bridge

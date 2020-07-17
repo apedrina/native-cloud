@@ -1,0 +1,37 @@
+spring:
+  devtools:
+    add-properties: false
+  profiles:
+    active: native
+  application:
+    name: config
+  security:
+    user:
+      name: admin
+      password: admin
+  cloud:
+    config:
+      server:
+        #git:
+        #uri: https://github.com/apedrina/config
+        native:
+          searchLocations: classpath:/
+server:
+  port: 8888
+
+# actuator endpoints
+info:
+  app:
+    name: Akumos Config Server
+    description: External centralized config server
+    version: 0.0.1
+
+# management
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+

@@ -1,68 +1,76 @@
-# Native cloud application
+# Akumos Native-Cloud
 
-Here you will find an example of a Native Cloud Application using: SpringCloud, SpringEureka, SpringZuul, SpringConfig, SpringBoot, MongoDB, Docker, etc.
+Here we've a simple example of a Native-Cloud solution implemented using Spring-boot NetFlix and Spring-boot Cloud.<br>
+This project is used on Akumo's Platform Tutorial, see here.
+ 
+# Features
 
-# How to
+- API Gateway
+- Service Registry
+- Config Server
+- Circuit Break
+- Microservice's log solution
+- Log centralize analyse 
+- Monitoring services 
+- Containerized (docker)
+- Oauth
 
-First run the /config module with the bellow command:
+## Running and test
 
-```bash
-mvn spring-boot:run
+We recommend you follow the order of execution as it is presented bellow;
+<p>
+All commands should be execute from <i><project-root-directory></i>
+</p>
 
-```
-This module is responsible for store and supply access to the config files to all other modules system.
 
-The second module to run is /registry execute:
+### Config
 
-```bash
-mvn spring-boot:run -Dspring.profiles.active=dev
-```
-Now we can access the eureka admin panel to do this access:
 
-```
-http://localhost:8761/
-```
-![alt text](https://raw.githubusercontent.com/apedrina/native-cloud/master/doc/eureka.png)
+````bash
+cd /config
+mvn clean install -DskipTests
+java -jar ./target/config.jar
+````
+### Registry
 
-Ok, /admin module is the next module to start:
+````bash
+cd /registry
+mvn clean install -DskipTests
+java -jar -Dspring.profiles.active=dev ./target/registry.jar
+````
+### Gateway
 
-```bash
-mvn spring-boot:run -Dspring.profiles.active=dev
-```
-![alt text](https://raw.githubusercontent.com/apedrina/native-cloud/master/doc/spring-admin.png)
+````bash
+cd /gateway
+mvn clean install -DskipTests
+java -jar -Dspring.profiles.active=dev ./target/gateway.jar
+````
 
-There isn't obligate order to start the others modules. To run all of these other modules use the same param used above: 
-``
--Dspring.profiles.active=dev. 
-``
+### Auth 
 
-# Run with docker
+````bash
+cd /auth
+mvn clean install -DskipTests
+java -jar -Dspring.profiles.active=dev ./target/authorization-server.jar
+````
+### Customer mock
 
-To run applciation first use this command:
+````bash
+cd /customer
+mvn clean install -DskipTests
+java -jar -Dspring.profiles.active=dev ./target/customer.jar
+````
 
-```bash
-sudo docker-compose build
-```
-And after
+### Testing with CURL
 
-```bash
-sudo docker-compose up
-```
+Getting the token:
 
-# View
+````bash
+curl -X POST -d '{"username":"javainuse","password":"password"}' http://localhost:8089/api/auth/token --header "Content-Type:application/json"
+````
 
-To access app-view:
+Mocking the get customers:
 
-```bash
-http://localhost:8081/home
-```
-
-# Add order's and client's
-
-To add order's and client's use the Swagger-ui endpoint's:
-
-Ex:
-
-localhost:8083/swagger-ui.html#!/order-rest/saveUsingPUT
-
-localhost:8082/swagger-ui.html#!/client-rest/saveUsingPUT
+````bash
+curl -X GET http://localhost:8089/api/customer/v1 -H "Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE1OTE3NDc2MDUsImlhdCI6MTU5MTcyOTYwNX0.I_-1UMIA57hBp_dxfQeY3o1OeZARnvum30lg_SY4lkvYC7t-wAYNRg3MtSAWWPb5dnvuBZ1DLkuzbM4r2s0g4g"
+````

@@ -1,0 +1,38 @@
+version: "3.2"
+
+services:
+  registry:
+    build: ../../registry
+    image: akumo/registry:latest
+    ports:
+      - "8761:8761"
+    container_name: registry
+    networks:
+      - compose-network
+  config:
+    build: ../../config
+    image: akumo/config:latest
+    ports:
+      - "8888:8888"
+    container_name: config
+    networks:
+      - compose-network
+  gateway:
+    build: ../../gateway
+    image: akumo/gateway:latest
+    ports:
+      - "8089:8089"
+    container_name: gateway
+    networks:
+      - compose-network
+  ocr:
+    build: ../../ocr
+    image: akumo/ocr:latest
+    ports:
+      - "9898:9898"
+    container_name: ocrservice
+    networks:
+      - compose-network
+networks:
+  compose-network:
+    driver: bridge

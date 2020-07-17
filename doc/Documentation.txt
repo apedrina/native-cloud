@@ -1,5 +1,0 @@
-Refresh scope (whit broadcast /bus)
-curl -X POST http://server:port/refrescurl -X POST http://server:port/refreshh
-
-Delete docker images with children
-docker rmi $(sudo docker images --filter "dangling=true" -q --no-trunc)

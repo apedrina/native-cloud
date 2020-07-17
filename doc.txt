@@ -1,0 +1,5 @@
+git credential-manager delete https://github.com
+
+
+git config --global user.name "akumoplatform"
+git config --global user.email "akumoplatform@gmail.com"

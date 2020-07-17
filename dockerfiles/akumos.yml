@@ -1,0 +1,40 @@
+version: "3.2"
+
+services:
+  registry:
+    build: ../registry
+    image: akumo/registry:latest
+    ports:
+      - "8761:8761"
+    container_name: registry
+    depends_on:
+      - "config"
+  config:
+    build: ../config
+    image: akumo/config:latest
+    ports:
+      - "8888:8888"
+    container_name: config
+  gateway:
+    build: ../gateway
+    image: akumo/gateway:latest
+    ports:
+      - "8089:8089"
+    container_name: gateway
+    depends_on:
+      - "config"
+      - "registry"
+  ocr:
+    image: akumo/ocr:latest
+    build: ../ocr
+    ports:
+      - "9898:9898"
+    container_name: ocrservice
+    depends_on:
+      - "config"
+      - "registry"
+      - "gateway"
+    volumes:
+      - "/private/var/log/akumos:/var/log/akumos"
+
+
