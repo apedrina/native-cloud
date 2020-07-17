@@ -1,7 +1,7 @@
 # Akumos Native-Cloud
 
 Here we've a simple example of a Native-Cloud solution implemented using Spring-boot NetFlix and Spring-boot Cloud.<br>
-This project is used on Akumo's Platform Tutorial, see here.
+This project is used on Akumo's Platform Tutorial, <a href="https://github.com/akumoplatform/native-cloud">see here</a>.
  
 # Features
 
